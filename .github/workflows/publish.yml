@@ -49,9 +49,10 @@ jobs:
       - name: Publish
         run: |
           set -o pipefail
-          if ! npm publish --access public 2>&1 | tee publish.log; then
-            # Surface the npm error as annotations (visible on the run summary)
-            grep -E "npm (error|ERR!|warn)" publish.log | tail -15 | while IFS= read -r line; do
+          echo "OIDC request URL present: ${ACTIONS_ID_TOKEN_REQUEST_URL:+yes}"
+          if ! npm publish --access public --loglevel verbose 2>&1 | tee publish.log; then
+            # Surface OIDC diagnostics and the npm error as annotations (visible on the run summary)
+            grep -iE "oidc|trusted|provenance|npm error" publish.log | grep -v "complete log" | tail -20 | while IFS= read -r line; do
               echo "::error title=npm publish::${line}"
             done
             exit 1
