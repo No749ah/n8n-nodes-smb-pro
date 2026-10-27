@@ -54,14 +54,14 @@ npm run build      # tsc -> dist/
 ## Release
 
 Publishing runs via GitHub Actions (`.github/workflows/publish.yml`) when a version tag is pushed.
-The repository needs an `NPM_TOKEN` secret (npm automation / granular access token with publish rights).
+It uses npm Trusted Publishing (OIDC), so no npm token is stored in the repository. The trusted publisher is configured on npmjs.com for `No749ah/n8n-nodes-smb-pro` with workflow `publish.yml`.
 
 ```bash
 npm version patch   # or minor / major – bumps package.json and creates the tag
 git push --follow-tags
 ```
 
-The workflow checks that the tag matches `package.json`, builds and publishes with provenance.
+The workflow checks that the tag matches `package.json`, builds and publishes (provenance is attached automatically).
 
 ## Changelog
 
