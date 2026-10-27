@@ -1,0 +1,57 @@
+{
+  "name": "n8n-nodes-smb-pro",
+  "version": "1.3.0",
+  "description": "n8n community node for SMB2/SMB3 shares with NTLMv2 support. Usable as an AI Agent tool. Proper n8n credentials, list (recursive, parallel, permission-tolerant)/upload/download/delete/move/mkdir operations, retry logic and clear errors.",
+  "keywords": [
+    "n8n-community-node-package",
+    "n8n",
+    "smb",
+    "smb2",
+    "cifs",
+    "samba",
+    "windows-share",
+    "ntlmv2",
+    "ai-tool",
+    "ai-agent"
+  ],
+  "license": "MIT",
+  "author": "No749ah",
+  "homepage": "https://github.com/No749ah/n8n-nodes-smb-pro",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/No749ah/n8n-nodes-smb-pro.git"
+  },
+  "bugs": {
+    "url": "https://github.com/No749ah/n8n-nodes-smb-pro/issues"
+  },
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "files": [
+    "dist"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/SmbApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/SmbPro/SmbPro.node.js"
+    ]
+  },
+  "dependencies": {
+    "v9u-smb2": "^1.0.6"
+  },
+  "devDependencies": {
+    "@types/node": "^18.16.16",
+    "n8n-workflow": "^1.0.0",
+    "typescript": "^5.3.0"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  }
+}
